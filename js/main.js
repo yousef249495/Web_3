@@ -76,7 +76,7 @@ function randomizeImgs() {
             let imgs = ["img_1.jpg", "img_2.jpg", "img_3.jpg", "img_4.jpg", "img_5.jpg", "img_6.jpg",]
             let randomBackground = imgs[Math.floor(Math.random() * imgs.length)]
             landing.style.backgroundImage = `url("../imgs/${randomBackground}")`
-        }, 1000)
+        }, 10000)
     }
 }
 
