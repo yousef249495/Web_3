@@ -8,7 +8,7 @@ let backgroundInterval
 
 
 // coloring li in options box in setting menu with setting attribute
-let colors = ["#d8315b", "#FF9800", "#009688", "#03A9F4", "#4CAF50"]
+let colors = ["#d8315b", "#FF9800", "#20cde5", "#03A9F4", "#df5bf4"]
 for (let i = 0; i < colors.length; i++) {
     colorsOptions[i].style.backgroundColor = colors[i]
     colorsOptions[i].setAttribute("data-color", colors[i])
@@ -29,14 +29,11 @@ colorsOptions.forEach(li => {
         document.documentElement.style.setProperty('--main-cl', e.target.dataset.color)
         localStorage.setItem("main-color", e.target.dataset.color)
 
-        // removing active class from all colors options
-        colorsOptions.forEach(color => color.classList.remove("active"))
+        // Handle Active status
+        handleActive(e)
 
-        // Adding active class to selected options
-        e.target.classList.add("active")
     })
 })
-
 
 
 if (backgroundCondition !== null) {
@@ -54,9 +51,9 @@ if (backgroundCondition !== null) {
 randomBackrgoundSpans.forEach(span => {
 
     span.addEventListener("click", e => {
-        e.target.parentElement.querySelectorAll(".active").forEach(element => element.classList.remove("active"))
 
-        e.target.classList.add("active")
+        // Handle Active status
+        handleActive(e)
 
         if (e.target.dataset.background === "yes") {
             changeBackground = true
@@ -83,7 +80,6 @@ function randomizeImgs() {
 randomizeImgs()
 
 
-
 // Opening setting menu
 const settingBox = document.querySelector(".setting-box")
 const settingIconDiv = document.querySelector(".setting-icon")
@@ -94,3 +90,127 @@ settingIconDiv.addEventListener("click", function () {
 })
 
 
+// Start Skills Page 
+
+let skills = document.querySelectorAll(".skill-progress span")
+
+window.onscroll = function () {
+    let ourSkills = document.querySelector(".skills")
+
+    let skillOfsetTop = ourSkills.offsetTop
+    let skillOuterHeight = ourSkills.scrollHeight
+    let windowHeight = this.innerHeight
+    let windowScrollTop = this.scrollY
+
+    if (windowScrollTop > (skillOfsetTop + skillOuterHeight - windowHeight)) {
+
+        document.querySelector('.nav-bullets').style.display = 'block'
+
+        skills.forEach(skill => {
+            skill.style.width = skill.dataset.progress
+        })
+    }
+
+    if (windowScrollTop === 0) {
+
+        document.querySelector('.nav-bullets').style.display = 'none'
+
+        skills.forEach(skill => {
+            skill.style.width = "0"
+
+        })
+    }
+}
+// End Skills Page 
+// Start products
+let ourProducts = document.querySelectorAll(".products .product-box img")
+
+ourProducts.forEach(product => {
+    product.addEventListener("click", e => {
+
+        // Create overlay element
+        let overlay = document.createElement("div")
+        overlay.className = 'popup-overlay'
+
+        document.body.appendChild(overlay)
+
+        // Create popup box 
+        let popupBox = document.createElement("div")
+        popupBox.className = 'popup-box'
+
+        // Adding heading to the img 
+        if (product.alt !== null) {
+            let imgHeading = document.createElement("h3")
+            imgHeading.innerHTML = product.alt
+            popupBox.appendChild(imgHeading)
+        }
+
+        let popupImage = document.createElement("img")
+        popupImage.src = product.src
+        popupImage.alt = product.alt
+
+        popupBox.appendChild(popupImage)
+
+        // Create Close Button 
+        let closeBtn = document.createElement("img")
+        closeBtn.src = '/svgs/close.svg'
+        closeBtn.className = 'close-button'
+        popupBox.appendChild(closeBtn)
+
+        document.body.appendChild(popupBox)
+
+    })
+})
+
+// Close popup img
+document.addEventListener("click", e => {
+    if (e.target.className === 'close-button') {
+
+        // Remove the image that on overlay
+        e.target.parentElement.remove()
+        // document.querySelector(".popup-box").remove()
+
+        // Remove Overlay
+        document.querySelector('.popup-overlay').remove()
+    }
+})
+
+// End products
+// Start bullets and Links 
+let bullets = document.querySelectorAll(".nav-bullets .bullet")
+let links = document.querySelectorAll(".links a")
+
+scrollToWantSection(bullets)
+scrollToWantSection(links)
+
+function scrollToWantSection(elemets) {
+    elemets.forEach(element => {
+
+        element.addEventListener("click", e => {
+
+            e.preventDefault()
+
+            let targetSection = document.querySelector(`.${e.target.dataset.section}`);
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+            } else {
+                console.error("Target section not found for selector:", e.target.dataset.section);
+            }
+
+        })
+
+    })
+
+}
+// End bullets and Links 
+
+// Handle Active status
+function handleActive(ev) {
+    ev.target.parentElement.querySelectorAll(".active").forEach(element => element.classList.remove("active"))
+
+    ev.target.classList.add("active")
+
+}
