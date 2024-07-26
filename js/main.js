@@ -163,8 +163,8 @@ ourProducts.forEach(product => {
         popupBox.appendChild(popupImage)
 
         // Create Close Button 
-        let closeBtn = document.createElement("img")
-        closeBtn.src = '/svgs/close.svg'
+        let closeBtn = document.createElement("button")
+        closeBtn.innerHTML = 'X'
         closeBtn.className = 'close-button'
         popupBox.appendChild(closeBtn)
 

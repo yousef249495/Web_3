@@ -618,18 +618,26 @@ body {
         }
     }
 
-    img:nth-of-type(2) {
+    .close-button {
         position: absolute;
         top: -25px;
         right: -25px;
         width: 50px;
         height: 50px;
         padding: 2px;
-        border-radius: 50%;
+        border: none;
         background-color: var(--main-cl);
         cursor: pointer;
+        font-size: 25px;
+        font-weight: bold;
+        color: var(--forth-cl);
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
 
-        @media (max-width:767px) {
+        @media(max-width:767px) {
             top: -17.5px;
             right: -17.5px;
             width: 35px;
