@@ -547,6 +547,11 @@ body {
             background-color: var(--forth-cl);
             border: 1px solid #ccc;
             cursor: pointer;
+            transition: 0s;
+            -webkit-transition: 0s;
+            -moz-transition: 0s;
+            -ms-transition: 0s;
+            -o-transition: 0s
         }
     }
 }
