@@ -48,12 +48,13 @@
                 </div>
             </div>
             <div class="option-box">
-                <h4>Test Option</h4>
-                <div class="Test-Option">
-                    <span class="yes active" data-background="yes">Yes</span>
-                    <span class="no" data-background="no">No</span>
+                <h4>Show Bullets</h4>
+                <div class="bullets-option">
+                    <span class="yes active" data-show="yes">Show</span>
+                    <span class="no" data-show="no">Hidde</span>
                 </div>
             </div>
+            <button class="reset-options">Reset Options</button>
         </div>
     </div>
     <!-- End setting box  -->
@@ -77,6 +78,9 @@
         <div class="bullet" data-section="about-us">
             <div class="tooltip">About Us</div>
         </div>
+        <div class="bullet" data-section="contact-us">
+            <div class="tooltip">Contact Us</div>
+        </div>
     </div>
     <!-- End nav bullets -->
     <!-- Start Landing Page -->
@@ -85,14 +89,21 @@
         <div class="container">
             <div class="header-area">
                 <div class="logo">Special Design</div>
-                <ul class="links">
-                    <li><a href="#" data-section="skills">Skills</a></li>
-                    <li><a href="#" data-section="products">Products</a></li>
-                    <li><a href="#" data-section="timeline">Timeline</a></li>
-                    <li><a href="#" data-section="features">Features</a></li>
-                    <li><a href="#" data-section="testimonials">Testimonials</a></li>
-                    <li><a href="#" data-section="about-us">About Us</a></li>
-                </ul>
+                <div class="links-container">
+                    <ul class="links">
+                        <li><a href="#" data-section="skills">Skills</a></li>
+                        <li><a href="#" data-section="products">Products</a></li>
+                        <li><a href="#" data-section="timeline">Timeline</a></li>
+                        <li><a href="#" data-section="features">Features</a></li>
+                        <li><a href="#" data-section="testimonials">Testimonials</a></li>
+                        <li><a href="#" data-section="about-us">About Us</a></li>
+                    </ul>
+                    <button class="toggle-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
         </div>
         <div class="introduction-text">
@@ -292,7 +303,34 @@
         </div>
     </div>
     <!-- End about us -->
-
+    <!-- Start Contact Us -->
+    <div class="contact-us">
+        <div class="overlay"></div>
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form action="">
+                <div class="left">
+                    <input type="text" placeholder="Your Name" name="username">
+                    <input type="text" placeholder="Your Phone" name="phone">
+                    <input type="email" placeholder="Your Email" name="email">
+                    <input type="text" placeholder="Subject" name="subject">
+                </div>
+                <div class="right">
+                    <textarea name="message" placeholder="Your Message"></textarea>
+                    <input type="submit" value="Send">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End Contact Us -->
+    <!-- Start Go Top Button -->
+    <button class="go-top">
+        <img src="svgs/arrow-up-solid.svg" alt="UP">
+    </button>
+    <!-- End Go Top Button -->
+    <!-- Start Footer -->
+    <footer>Created With Love By <span>Yousef</span>,2024/7/26 6:00am </footer>
+    <!-- End Footer -->
     <script src="js/main.js"></script>
 </body>
 

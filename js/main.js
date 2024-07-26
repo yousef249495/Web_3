@@ -1,28 +1,29 @@
-let mainColor = localStorage.getItem("main-color")
-let backgroundCondition = localStorage.getItem("background-condition")
+let mainColorLocalStorage = localStorage.getItem("main-color")
+let backgroundLocalStorage = localStorage.getItem("background-condition")
 const colorsOptions = document.querySelectorAll(".colors-list li")
 const landing = document.querySelector(".landing-page")
 const randomBackrgoundSpans = document.querySelectorAll(".random-background-condition span")
+const goTopBtn = document.querySelector('.go-top');
 let changeBackground = true
 let backgroundInterval
 
 
 // coloring li in options box in setting menu with setting attribute
-let colors = ["#d8315b", "#FF9800", "#20cde5", "#03A9F4", "#df5bf4"]
+let colors = ["#03A9F4", "#FF9800", "#20cde5", "#d8315b", "#df5bf4"]
 for (let i = 0; i < colors.length; i++) {
     colorsOptions[i].style.backgroundColor = colors[i]
     colorsOptions[i].setAttribute("data-color", colors[i])
 }
 
-if (mainColor !== null) {
+if (mainColorLocalStorage !== null) {
     // removing active class from all colors options
     colorsOptions.forEach(color => color.classList.remove("active"))
-    document.documentElement.style.setProperty('--main-cl', mainColor)
+    document.documentElement.style.setProperty('--main-cl', mainColorLocalStorage)
 }
 
 colorsOptions.forEach(li => {
     // Focusing on active color div
-    if (li.dataset.color === mainColor) li.classList.add("active")
+    if (li.dataset.color === mainColorLocalStorage) li.classList.add("active")
 
     li.addEventListener("click", e => {
         // Changing main color and save it to localstorage
@@ -36,10 +37,10 @@ colorsOptions.forEach(li => {
 })
 
 
-if (backgroundCondition !== null) {
+if (backgroundLocalStorage !== null) {
     randomBackrgoundSpans.forEach(span => span.classList.remove("active"))
 
-    if (backgroundCondition === 'true') {
+    if (backgroundLocalStorage === 'true') {
         changeBackground = true
         document.querySelector(".random-background-condition .yes").classList.add("active")
     } else {
@@ -90,8 +91,10 @@ settingIconDiv.addEventListener("click", function () {
 })
 
 
-// Start Skills Page 
+// Start Go Top Button
+goTopBtn.onclick = _ => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
 
+// Start Skills Page 
 let skills = document.querySelectorAll(".skill-progress span")
 
 window.onscroll = function () {
@@ -102,9 +105,9 @@ window.onscroll = function () {
     let windowHeight = this.innerHeight
     let windowScrollTop = this.scrollY
 
-    if (windowScrollTop > (skillOfsetTop + skillOuterHeight - windowHeight)) {
-
-        document.querySelector('.nav-bullets').style.display = 'block'
+    // if (windowScrollTop > (skillOfsetTop + skillOuterHeight - windowHeight)) {}
+    if (windowScrollTop > windowHeight) {
+        // navBullets.style.right = '0'
 
         skills.forEach(skill => {
             skill.style.width = skill.dataset.progress
@@ -113,13 +116,21 @@ window.onscroll = function () {
 
     if (windowScrollTop === 0) {
 
-        document.querySelector('.nav-bullets').style.display = 'none'
+        // navBullets.style.right = '-40px'
 
         skills.forEach(skill => {
             skill.style.width = "0"
 
         })
     }
+
+    // go top button part
+    if (window.scrollY > windowHeight) {
+        goTopBtn.style.display = 'block'
+    } else {
+        goTopBtn.style.display = 'none'
+    }
+
 }
 // End Skills Page 
 // Start products
@@ -214,3 +225,72 @@ function handleActive(ev) {
     ev.target.classList.add("active")
 
 }
+
+
+// Showing bullets or not
+const bulletsOptionSpans = document.querySelectorAll(".option-box .bullets-option span")
+const navBullets = document.querySelector(".nav-bullets")
+let bulletsLocalStorage = localStorage.getItem('bullets-display')
+
+if (bulletsLocalStorage !== null) {
+    bulletsOptionSpans.forEach(span => {
+
+        span.classList.remove("active")
+
+        if (span.dataset.show === "yes" && bulletsLocalStorage === "block") {
+            span.classList.add("active")
+            navBullets.style.display = bulletsLocalStorage
+        } else if (span.dataset.show === "no" && bulletsLocalStorage === "none") {
+            span.classList.add("active")
+            navBullets.style.display = bulletsLocalStorage
+        }
+
+    })
+}
+
+bulletsOptionSpans.forEach(span => {
+
+    span.addEventListener('click', e => {
+
+        handleActive(e)
+
+        if (e.target.dataset.show === 'yes') {
+            navBullets.style.display = 'block'
+            localStorage.setItem("bullets-display", 'block')
+        } else {
+            navBullets.style.display = 'none'
+            localStorage.setItem("bullets-display", 'none')
+        }
+    })
+})
+
+
+// Reset All Options 
+document.querySelector('.reset-options').onclick = function () {
+    localStorage.clear()
+    window.location.reload()
+}
+
+
+const menuBar = document.querySelector(".toggle-menu");
+const linkSection = document.querySelector(".links");
+
+// Toggle menu open/close on menuBar click
+menuBar.addEventListener('click', () => {
+    linkSection.classList.toggle('open');
+    menuBar.classList.toggle('open');
+});
+
+// Function to close the menu
+function closeMenu() {
+    linkSection.classList.remove('open');
+    menuBar.classList.remove('open');
+}
+
+// Close the menu if clicking outside of it
+window.addEventListener('click', (e) => {
+    if (!linkSection.contains(e.target) && !menuBar.contains(e.target)) {
+        closeMenu();
+    }
+});
+
