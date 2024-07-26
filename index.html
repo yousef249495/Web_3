@@ -20,6 +20,7 @@
 
     <!-- favicon -->
     <link rel="shortcut icon" href="imgs/favicon.png" type="image/x-icon">
+    <script src="https://unpkg.com/headroom.js"></script>
 </head>
 
 <body>
@@ -331,6 +332,14 @@
     <footer>Created With Love By <span>Yousef</span>,2024/7/26 6:00am </footer>
     <!-- End Footer -->
     <script src="js/main.js"></script>
+    <script>
+        // Headroom.js
+        let headArea = document.querySelector('.head-area')
+        var headroom = new Headroom(headArea);
+
+        // Initialize Headroom
+        headroom.init();
+    </script>
 </body>
 
 </html>

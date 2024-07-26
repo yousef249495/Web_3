@@ -28,6 +28,18 @@ body {
     margin: auto;
 }
 
+.headroom {
+    transition: transform 0.2s ease-in-out;
+}
+
+.headroom--pinned {
+    transform: translateY(0);
+}
+
+.headroom--unpinned {
+    transform: translateY(-100%);
+}
+
 /* Start setting box  */
 .setting-box {
     position: fixed;
