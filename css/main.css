@@ -28,18 +28,6 @@ body {
     margin: auto;
 }
 
-.headroom {
-    transition: transform 0.2s ease-in-out;
-}
-
-.headroom--pinned {
-    transform: translateY(0);
-}
-
-.headroom--unpinned {
-    transform: translateY(-100%);
-}
-
 /* Start setting box  */
 .setting-box {
     position: fixed;
@@ -227,18 +215,19 @@ body {
             width: 120px;
             padding: 6px 10px;
             position: absolute;
-            right: 40px;
-            top: -6px;
+            right: 30px;
+            top: -8px;
             text-align: center;
             cursor: default;
             pointer-events: none;
             display: none;
+            box-shadow: 0px 0px 2px 0px #000;
 
             &::before {
                 content: '';
                 position: absolute;
                 top: 50%;
-                right: -20px;
+                right: -19px;
                 width: 0;
                 height: 0;
                 border: 10px solid transparent;
@@ -255,6 +244,8 @@ body {
         &:hover .tooltip {
             display: block;
         }
+
+        @media (max-width) {}
     }
 }
 
@@ -265,6 +256,7 @@ body {
     background-image: url(../imgs/img_4.jpg);
     background-size: cover;
     position: relative;
+    z-index: 1;
     transition: 1s linear;
     -webkit-transition: 1s linear;
     -moz-transition: 1s linear;
@@ -576,22 +568,45 @@ body {
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
 
+    @media (max-width:767px) {
+        & {
+            height: auto;
+            width: 80%;
+        }
+    }
+
     h3 {
         position: absolute;
         width: 100%;
         font-size: 30px;
         font-weight: bold;
         color: var(--main-cl);
+        margin: 18px auto;
+
+        @media (max-width:767px) {
+            & {
+                font-size: 25px;
+                margin: 10px 0;
+            }
+        }
     }
 
     img:first-of-type {
-        max-height: 100%;
-        padding: 100px 10px 10px;
+        height: 100%;
+        padding: 70px 10px 10px;
         border-radius: 6px;
         -webkit-border-radius: 6px;
         -moz-border-radius: 6px;
         -ms-border-radius: 6px;
         -o-border-radius: 6px;
+
+        @media (max-width:767px) {
+            & {
+                width: 100%;
+                height: auto;
+                padding-top: 50px;
+            }
+        }
     }
 
     img:nth-of-type(2) {
@@ -604,6 +619,13 @@ body {
         border-radius: 50%;
         background-color: var(--main-cl);
         cursor: pointer;
+
+        @media (max-width:767px) {
+            top: -17.5px;
+            right: -17.5px;
+            width: 35px;
+            height: 35px;
+        }
     }
 }
 

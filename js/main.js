@@ -145,7 +145,7 @@ ourProducts.forEach(product => {
 
         document.body.appendChild(overlay)
 
-        // Create popup box 
+        // Create popup box
         let popupBox = document.createElement("div")
         popupBox.className = 'popup-box'
 
@@ -170,6 +170,11 @@ ourProducts.forEach(product => {
 
         document.body.appendChild(popupBox)
 
+        document.querySelector('.popup-overlay').addEventListener('click', _ => {
+            popupBox.remove()
+
+            document.querySelector('.popup-overlay').remove()
+        })
     })
 })
 
@@ -185,6 +190,14 @@ document.addEventListener("click", e => {
         document.querySelector('.popup-overlay').remove()
     }
 })
+
+function removePopupOverlay() {
+    document.querySelector('.popup-overlay').addEventListener('click', _ => {
+        popupBox.remove()
+
+        document.querySelector('.popup-overlay').remove()
+    })
+}
 
 // End products
 // Start bullets and Links 
