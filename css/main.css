@@ -1138,19 +1138,30 @@ body {
 /* End Contact Us  */
 /* Start Go Top Button*/
 .go-top {
-    display: none;
+    z-index: 100;
     position: fixed;
     bottom: 10px;
     right: 10px;
-    background: var(--main-cl);
-    border: none;
     padding: 10px;
+    border: none;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
-    z-index: 100;
+    background: var(--main-cl);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .5s ease;
+    -moz-transition: opacity .5s ease;
+    -ms-transition: opacity .5s ease;
+    -o-transition: opacity .5s ease;
+    -webkit-transition: opacity .5s ease;
+
+    &.show {
+        pointer-events: initial;
+        opacity: 1;
+    }
 
     img {
         width: 15px;

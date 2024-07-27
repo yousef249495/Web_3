@@ -120,15 +120,15 @@ window.onscroll = function () {
 
         skills.forEach(skill => {
             skill.style.width = "0"
-
         })
     }
 
     // go top button part
+    // if (document.body.scrollTop > windowHeight || document.documentElement.scrollTop > windowHeight) {
     if (window.scrollY > windowHeight) {
-        goTopBtn.style.display = 'block'
+        goTopBtn.classList.add("show")
     } else {
-        goTopBtn.style.display = 'none'
+        goTopBtn.classList.remove("show")
     }
 
 }
